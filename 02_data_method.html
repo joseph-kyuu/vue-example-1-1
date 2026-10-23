@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01_vue_template</title>
+  </head>
+  <body>
+    <!-- 建立根容器 -->
+    <div id="app">
+      <p>{{ temp.message }}</p>
+      <p>{{ temp.number }}</p>
+      <button type="button" v-on:click="add">增加</button>
+    </div>
+
+    <!-- 透過 CDN 引入 Vue 3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- 建立根容器 -->
+    <script>
+      // 傳入根元件選項物件，建立 Vue 應用程式實例 ( 物件 )。
+      const app = Vue.createApp({
+        data() {
+          return {
+            temp: {
+              message: "Vue 的 CDN 環境，已建置完成",
+              number: 0,
+            },
+          };
+        },
+        methods: {
+          add() {
+            this.temp.number = this.temp.number + 1;
+            console.log("數字增加");
+            console.log(this);
+            console.log(this.temp);
+          },
+        },
+      });
+
+      // 將 Vue 應用程式掛載到指定的 HTML 中的 #app 元素(根容器)。
+      app.mount("#app");
+    </script>
+  </body>
+</html>
