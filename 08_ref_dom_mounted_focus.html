@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <title>01_vue_template</title>
+  </head>
+  <body>
+    <!-- 建立根容器 -->
+    <div id="app">
+      <div class="container py-5">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="name@example.com"
+            ref="email"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="name@example.com"
+            ref="name"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- 透過 CDN 引入 Vue 3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- 建立根容器 -->
+    <script>
+      // 傳入根元件選項物件，建立 Vue 應用程式實例 ( 物件 )。
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: "Vue 的 CDN 環境，已建置完成",
+          };
+        },
+        mounted() {
+          this.$refs.email.focus();
+        },
+      });
+
+      // 將 Vue 應用程式掛載到指定的 HTML 中的 #app 元素(根容器)。
+      app.mount("#app");
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
