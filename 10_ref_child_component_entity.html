@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <title>10_child_component_entity</title>
+  </head>
+  <body>
+    <!-- 建立根容器 -->
+    <div id="app">
+      <div class="container py-5">
+        <h2>父元件</h2>
+        <button
+          type="button"
+          class="btn btn-primary mb-3"
+          v-on:click="clearForm"
+        >
+          父元件清空表單
+        </button>
+        <hr>
+        <child-component ref="childComponent"></child-component>
+      </div>
+    </div>
+
+    <!-- 子元件模板 -->
+    <template id="childComponent">
+      <div> 
+         <h2>子元件</h2>
+        <div class="mb-3">
+          <label for="title" class="form-label">Product Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            placeholder="Product Title"
+            v-model="productTitle"
+          />
+        </div>
+        <button
+          type="button"
+          class="btn btn-primary mb-3"
+          v-on:click="resetForm"
+        >
+          子元件清空表單
+      </div>
+    </div>
+    </template>
+
+    <!-- 透過 CDN 引入 Vue 3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- 建立根容器 -->
+    <script>
+      // 子元件
+      const ChildComponent = {
+        data(){
+          return {
+            productTitle:'鞋子',
+          }
+        },
+        methods:{
+          resetForm(){
+            this.productTitle = '';
+          }
+        },
+        template: "#childComponent",
+        
+      };
+
+      // 傳入根元件選項物件，建立 Vue 應用程式實例 ( 物件 )。
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: "Vue 的 CDN 環境，已建置完成",
+          };
+        },
+        methods: {
+          clearForm() {
+            this.$refs.childComponent.resetForm();
+          },
+        },
+        components: {
+          ChildComponent,
+        },
+      });
+
+      // 將 Vue 應用程式掛載到指定的 HTML 中的 #app 元素(根容器)。
+      app.mount("#app");
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
